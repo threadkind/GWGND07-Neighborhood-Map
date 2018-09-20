@@ -9,7 +9,7 @@ class Sidebar extends React.Component {
   			<input type="text" placeholder="Search"></input>
   			<ol>
 	      		{this.props.markers.map((marker, index) =>
-	      			<li key={index}>{marker.lat}{marker.lng}</li>
+	      			<li key={index}>{marker.name}</li>
 	      		)}
 
   			</ol>
