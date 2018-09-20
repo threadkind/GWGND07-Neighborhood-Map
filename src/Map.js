@@ -5,15 +5,24 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 class Map extends React.Component {
 
   state = {
-    infoWindowOpen : false
+    infoWindowOpen : false,
+    markerLat : '',
+    markerLng : ''
   }
 
-  toggleWindow = () => {
+  toggleWindow = (e) => {
+    console.log(e.latLng.lat(), e.latLng.lng())
     if( this.state.infoWindowOpen === false ){
-      this.setState({ infoWindowOpen : true })
+      this.setState({ infoWindowOpen : true,
+                      markerLat : e.latLng.lat(),
+                      markerLng : e.latLng.lng()
+                    })
     }
     else {
-      this.setState({ infoWindowOpen : false })
+      this.setState({ infoWindowOpen : false,
+                      markerLat : '',
+                      markerLng :''
+                    })
     }
   }
 
@@ -30,13 +39,15 @@ class Map extends React.Component {
             position={marker}
             onClick={this.toggleWindow}
           >
+          </Marker>
+        )}
           {this.state.infoWindowOpen && <InfoWindow
-              onCloseClick={this.toggleWindow}>
-              <div>Hello</div>
+              onCloseClick={this.toggleWindow}
+              position={{lat: this.state.markerLat, lng: this.state.markerLng}}
+              >
+              <div>Coordinates of this location are {this.state.markerLat}, {this.state.markerLng}</div>
           </InfoWindow>}
 
-          </Marker>
-  			)}
   		</GoogleMap>
   	)
   }
