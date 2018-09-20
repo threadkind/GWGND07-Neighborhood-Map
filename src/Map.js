@@ -1,5 +1,7 @@
 import React from 'react'
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import Sidebar from './Sidebar'
+
 
 
 class Map extends React.Component {
@@ -53,7 +55,7 @@ class Map extends React.Component {
               >
               <div>Coordinates of this location are {this.state.markerLat}, {this.state.markerLng}</div>
           </InfoWindow>}
-
+          <Sidebar />
   		</GoogleMap>
   	)
   }
