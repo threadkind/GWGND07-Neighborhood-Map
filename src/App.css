@@ -1,6 +1,9 @@
 .App {
   text-align: center;
 }
+#root {
+  height: 100%;
+}
 html, body {
   height: 100%;
   padding: 0;

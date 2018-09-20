@@ -6,7 +6,10 @@ class App extends Component {
   render() {
     return (
 
-      <Map />
+      <Map
+        containerElement={<div style={{ height: `100%` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
     );
   }
 }
