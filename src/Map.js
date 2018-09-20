@@ -12,7 +12,10 @@ class Map extends React.Component {
   			defaultZoom={10}
   			defaultCenter={{lat: 47.622451, lng: -122.352033}}>
   			{markers.map((marker, index) =>
-  				<Marker {...marker} />
+  				<Marker
+            key={index}
+            position={marker}
+          />
   			)}
   		</GoogleMap>
   	)
