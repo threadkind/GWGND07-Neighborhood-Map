@@ -10,7 +10,9 @@ class Map extends React.Component {
     infoWindowOpen : false,
     markers : this.props.markers || [],
     markerLat : '',
-    markerLng : ''
+    markerLng : '',
+    results : [],
+    locations : []
   }
 
   toggleWindow = (e) => {
@@ -35,12 +37,16 @@ class Map extends React.Component {
     }
   }
 
-  render() {
-  	return (
 
+  render() {
+          console.log(this.state)
+
+
+  	return (
   		<GoogleMap
-  			defaultZoom={10}
+  			defaultZoom={12}
   			defaultCenter={{lat: 47.622451, lng: -122.352033}}>
+        <div id="title">Seattle Neighborhood Map</div>
   			{this.state.markers.map((marker, index) =>
   				<Marker
             key={index}

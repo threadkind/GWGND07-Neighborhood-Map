@@ -4,10 +4,19 @@
 #root {
   height: 100%;
 }
-html, body {
+html, body, main-content {
   height: 100%;
   padding: 0;
   margin: 0;
+  background: black;
+}
+#title {
+  position: absolute;
+  height: 30px;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  background: pink;
 }
 #map {
   height: 100vh;
