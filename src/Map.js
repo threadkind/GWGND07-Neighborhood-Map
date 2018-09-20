@@ -11,18 +11,24 @@ class Map extends React.Component {
   }
 
   toggleWindow = (e) => {
-    console.log(e.latLng.lat(), e.latLng.lng())
-    if( this.state.infoWindowOpen === false ){
-      this.setState({ infoWindowOpen : true,
-                      markerLat : e.latLng.lat(),
-                      markerLng : e.latLng.lng()
-                    })
-    }
-    else {
-      this.setState({ infoWindowOpen : false,
-                      markerLat : '',
-                      markerLng :''
-                    })
+    if(e !== undefined){
+      if(e.latLng.lat() !== this.markerLat && e.latLng.lng() !== this.markerLng && this.state.infoWindowOpen === true){
+        this.setState({ markerLat : e.latLng.lat(),
+                        markerLng : e.latLng.lng()
+                      })
+      }
+      else if( this.state.infoWindowOpen === false ){
+        this.setState({ infoWindowOpen : true,
+                        markerLat : e.latLng.lat(),
+                        markerLng : e.latLng.lng()
+                      })
+      }
+      else {
+        this.setState({ infoWindowOpen : false,
+                        markerLat : '',
+                        markerLng :''
+                      })
+      }
     }
   }
 
