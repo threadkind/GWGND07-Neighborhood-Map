@@ -1,5 +1,6 @@
 import React from 'react'
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
 
 
@@ -44,12 +45,15 @@ class Map extends React.Component {
 
   	return (
   		<GoogleMap
-  			defaultZoom={12}
+  			defaultZoom={10}
   			defaultCenter={{lat: 47.622451, lng: -122.352033}}>
-        <div id="title">Seattle Neighborhood Map</div>
-  			{this.state.markers.map((marker, index) =>
+
+        <TitleBanner />
+
+  			{this.state.markers.map((marker) =>
   				<Marker
-            key={index}
+            key={marker.id}
+            id={`m${marker.id}`}
             position={marker}
             onClick={this.toggleWindow}
           >

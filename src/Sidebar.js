@@ -1,19 +1,24 @@
 import React from 'react';
 
+
 class Sidebar extends React.Component {
 	handleSidebarClick = (e) => {
-		console.log(e.target)
+		let clickedMarker = this.props.markers[e.target.id-1]
+
+
+		console.log(clickedMarker)
 	}
 
   render() {
   	return(
-  		<div id='sidebar'>
+  		<div className='sidebar hidden'>
   			<input type="text" placeholder="Search"></input>
   			<ul>
-	      		{this.props.markers.map((result, index) =>
-	      			<li key={index}
+	      		{this.props.markers.map((marker) =>
+	      			<li key={marker.id}
+	      				id={`${marker.id}`}
 	      				onClick={this.handleSidebarClick}>
-	      			{result.name}
+	      			{marker.name}
 	      			</li>
 	      		)}
 

@@ -17,12 +17,13 @@ html, body, main-content {
   width: 100%;
   text-align: center;
   background: pink;
+  cursor: pointer;
 }
 #map {
   height: 100vh;
   width: 100vw;
 }
-#sidebar {
+.sidebar {
   width: 25vw;
   height: 100vh;
   position: absolute;
@@ -30,4 +31,10 @@ html, body, main-content {
   left: 0;
   background: black;
   color: white;
+}
+.hidden {
+  display: none;
+}
+#sidebar ul li {
+  cursor: pointer;
 }
