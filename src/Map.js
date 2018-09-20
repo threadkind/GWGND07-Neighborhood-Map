@@ -8,6 +8,7 @@ class Map extends React.Component {
 
   state = {
     infoWindowOpen : false,
+    markers : this.props.markers || [],
     markerLat : '',
     markerLng : ''
   }
@@ -35,13 +36,12 @@ class Map extends React.Component {
   }
 
   render() {
-  	const markers = this.props.markers || []
   	return (
 
   		<GoogleMap
   			defaultZoom={10}
   			defaultCenter={{lat: 47.622451, lng: -122.352033}}>
-  			{markers.map((marker, index) =>
+  			{this.state.markers.map((marker, index) =>
   				<Marker
             key={index}
             position={marker}
@@ -55,7 +55,9 @@ class Map extends React.Component {
               >
               <div>Coordinates of this location are {this.state.markerLat}, {this.state.markerLng}</div>
           </InfoWindow>}
-          <Sidebar />
+          <Sidebar
+            markers={this.state.markers}
+          />
   		</GoogleMap>
   	)
   }
