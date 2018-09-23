@@ -63,7 +63,8 @@ class Map extends React.Component {
             id={`m${marker.id}`}
             position={marker}
             icon={{ url : icon,
-               scaledSize : {width: 20, height: 32} }}
+               scaledSize : {width: 20, height: 32}
+               }}
             onClick={this.toggleWindow}
           >
           </Marker>
