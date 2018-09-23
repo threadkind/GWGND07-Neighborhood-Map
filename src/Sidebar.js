@@ -9,12 +9,27 @@ class Sidebar extends React.Component {
 		console.log(clickedMarker)
 	}
 
+	filterLocations = (e) => {
+		console.log(e.target.value)
+	}
+
   render() {
   	return(
   		<div>
 
 	  		<div className='sidebar hidden'>
-	  			<input type="text" placeholder="Search"></input>
+
+				  <select name="locations"
+				  		onChange={this.filterLocations}
+>
+				    <option value="filter" disabled>Filter locations...</option>
+				    <option value="landmark">Landmark</option>
+				    <option value="food">Food</option>
+				    <option value="gaming">Gaming</option>
+				    <option value="transportation">Transportation</option>
+				    <option value="museum">Museum</option>
+				  </select>
+
 	  			<ul>
 		      		{this.props.markers.map((marker) =>
 		      			<li key={marker.id}

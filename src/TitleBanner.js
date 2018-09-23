@@ -6,6 +6,7 @@ class TitleBanner extends React.Component {
 	}
 	toggleMenu = () => {
 		const sidebar = document.querySelector('.sidebar')
+
 		if(this.state.menuOpen === false){
 			this.setState({ menuOpen : true})
 			sidebar.classList.remove('hidden')
