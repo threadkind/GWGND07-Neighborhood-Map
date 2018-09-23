@@ -19,10 +19,16 @@ class TitleBanner extends React.Component {
 
 	render() {
 		return(
-        <div id="title"
-        	onClick={this.toggleMenu}
-        >Seattle Neighborhood Map</div>
 
+		<div>
+			<div id="menu-button"
+	        	onClick={this.toggleMenu}
+        	>☰</div>
+
+
+	        <div id="title"
+	        >Seattle Neighborhood Map</div>
+	    </div>
 		)
 	}
 

@@ -55,7 +55,6 @@ class Map extends React.Component {
 
         <TitleBanner />
 
-        <div id="menu-button">☰</div>
 
   			{this.state.markers.map((marker) =>
   				<Marker
