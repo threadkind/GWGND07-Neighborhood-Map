@@ -3,6 +3,8 @@ import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
 
+const mapStyles = require("./map-styles.json");
+
 
 
 class Map extends React.Component {
@@ -46,7 +48,9 @@ class Map extends React.Component {
   	return (
   		<GoogleMap
   			defaultZoom={10}
-  			defaultCenter={{lat: 47.622451, lng: -122.352033}}>
+  			defaultCenter={{lat: 47.622451, lng: -122.352033}}
+        defaultOptions={{ styles: mapStyles }}
+        >
 
         <TitleBanner />
 
