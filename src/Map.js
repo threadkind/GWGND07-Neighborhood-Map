@@ -4,6 +4,7 @@ import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
 
 const mapStyles = require("./map-styles.json");
+const icon = require("./marker.svg");
 
 
 
@@ -61,6 +62,8 @@ class Map extends React.Component {
             key={marker.id}
             id={`m${marker.id}`}
             position={marker}
+            icon={{ url : icon,
+               scaledSize : {width: 20, height: 32} }}
             onClick={this.toggleWindow}
           >
           </Marker>

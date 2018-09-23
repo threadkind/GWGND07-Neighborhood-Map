@@ -1,7 +1,7 @@
 :root {
   --main: #294f59;
   --accent: #17ba83;
-  --shadow: rgba(50,50,50,0.8);
+  --shadow: rgba(0,0,0,0.8);
   --text: #fff;
 
   --main-font: 'Poppins', sans-serif;
