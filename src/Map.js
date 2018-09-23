@@ -19,7 +19,7 @@ class Map extends React.Component {
     locations : []
   }
 
-  toggleWindow = (e) => {
+    toggleWindow = (e) => {
     if(e !== undefined){
       if(e.latLng.lat() !== this.markerLat && e.latLng.lng() !== this.markerLng && this.state.infoWindowOpen === true){
         this.setState({ markerLat : e.latLng.lat(),
@@ -39,6 +39,12 @@ class Map extends React.Component {
                       })
       }
     }
+  }
+
+  markerClick = (filteredMarkers) => {
+    console.log(this)
+    console.log(filteredMarkers)
+    this.setState({ markers : filteredMarkers })
   }
 
 
@@ -75,7 +81,8 @@ class Map extends React.Component {
               <div>Coordinates of this location are {this.state.markerLat}, {this.state.markerLng}</div>
           </InfoWindow>}
           <Sidebar
-            markers={this.state.markers}
+            markers={this.props.markers}
+            markerClick={this.markerClick.bind(this)}
           />
   		</GoogleMap>
   	)

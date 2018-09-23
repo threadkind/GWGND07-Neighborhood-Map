@@ -8,22 +8,22 @@ class Sidebar extends React.Component {
 	}
 
 	handleSidebarClick = (e) => {
+		console.log(this.props)
 		let clickedMarker = this.props.markers[e.target.id-1]
-		console.log(clickedMarker)
+		console.log(this.state.markers)
 	}
 
 	filterLocations = (e) => {
-		console.log(e.target.value)
-		console.log(this.props.markers)
-
 		e.preventDefault()
 
 		if(e.target.value === 'all'){
 			this.setState({ markers : this.props.markers })
+			this.props.markerClick(this.props.markers)
 		}
 		else {
 			let filtered = this.props.markers.filter( place => place.category === e.target.value )
 			this.setState({ markers : filtered })
+			this.props.markerClick(filtered)
 		}
 	}
 
