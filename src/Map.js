@@ -2,6 +2,7 @@ import React from 'react'
 import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
+import InfoMenu from './InfoMenu'
 
 const mapStyles = require("./map-styles.json");
 const icon = require("./marker.svg");
@@ -84,6 +85,8 @@ class Map extends React.Component {
             markers={this.props.markers}
             markerClick={this.markerClick.bind(this)}
           />
+
+          <InfoMenu />
   		</GoogleMap>
   	)
   }
