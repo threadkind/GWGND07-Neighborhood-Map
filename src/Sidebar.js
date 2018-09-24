@@ -13,26 +13,27 @@ class Sidebar extends React.Component {
 
 	toggleSidebar = (e) => {
 		let sidebar = document.querySelector('.sidebar')
-		let sidebarPhoto = document.querySelector('#sidebar-photo')
-		let sidebarLocations = document.querySelector('#sidebar-locations')
-		let sidebarList = document.querySelector('#sidebar-list')
 
+		let elements = [document.querySelector('#sidebar-photo'), document.querySelector('#sidebar-locations'), document.querySelector('#sidebar-list')]
+
+		function toggleHideElements(){
+			for(let i = 0; i < elements.length; i++){
+				elements[i].classList.toggle('hidden')
+			}
+		}
 
 		document.querySelectorAll('.control-text').forEach( element => element.classList.toggle('hidden'))
 
 		if(this.state.menuOpen === false){
 			this.setState({ menuOpen : true})
 			sidebar.classList.toggle('minimized')
-			sidebarPhoto.classList.toggle('hidden')
-			sidebarLocations.classList.toggle('hidden')
-			sidebarList.classList.toggle('hidden')
+			toggleHideElements()
 		}
 		else {
 			this.setState({ menuOpen : false})
 			sidebar.classList.toggle('minimized')
-			sidebarPhoto.classList.toggle('hidden')
-			sidebarLocations.classList.toggle('hidden')
-			sidebarList.classList.toggle('hidden')
+
+			setTimeout(toggleHideElements, 300)
 		}
 
 		console.log(e.target.classList)

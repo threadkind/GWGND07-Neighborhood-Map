@@ -72,6 +72,7 @@ html, body, main-content {
   padding: 2%;
   box-shadow: 2px 2px 10px var(--shadow);
   border-radius: 10px;
+  transition: max-height 0.3s ease;
 }
 #sidebar-photo-contain {
   width: 100%;
@@ -107,7 +108,8 @@ html, body, main-content {
   cursor: pointer;
 }
 .minimized {
-  height: 50px;
+  max-height: 50px;
+  transition: max-height 0.3s ease;
 }
 
 .control-text {
