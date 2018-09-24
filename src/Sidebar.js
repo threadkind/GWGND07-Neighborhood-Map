@@ -32,7 +32,7 @@ class Sidebar extends React.Component {
 
 	componentDidMount() {
 
-		fetch('https://api.unsplash.com/photos/?client_id=dfac3ef8c935541b727ab3164de25b94b85f9a4181868d008afd3c3fc41bcf7a&page=1&query=seattle')
+		fetch('https://api.unsplash.com/photos/?client_id=dfac3ef8c935541b727ab3164de25b94b85f9a4181868d008afd3c3fc41bcf7a&page=1&query=seattle landmarks')
 		.then(response => { return response.json() })
 		.then(data => {
 			let random = Math.floor(Math.random()*data.length)

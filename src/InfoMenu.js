@@ -2,38 +2,57 @@ import React from 'react';
 
 class InfoMenu extends React.Component {
 	state = {
-		view : this.props.view,
-		lat : 47.651105,
-		lon : -122.347272,
-		category: 'landmark',
-		venue : []
+		category: 'resturants',
+		venue : [],
+		item : this.props.item,
+		tab1Open : false,
+		tab2Open : false,
+		tab3Open : false
 	}
 
 	closeMenu = () => {
 		this.props.closeMenu()
 	}
 
+	foursquare = () => {
 
-	componentDidMount() {
-		fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.state.lat},${this.state.lon}&query=${this.state.category}`)
+		if(this.state.tab2Open){
+		fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.props.item[0].lat},${this.props.item[0].lng}&query=${this.state.category}`)
     .then(res => {
 		return res.json()
     })
     .then(data => {
     	let result = data.response.groups[0].items[0].venue
 
-    	console.log(result)
-
     	this.setState({ venue : result })
 
     })
     .catch(err => {
-       	console.log(err)
-    });
+       	this.setState({ venue : ['Information not available', err]})
+    })
+
+	}
+	}
+
+	componentWillReceiveProps(){
+		this.setState({ venue : [] })
+
+		this.foursquare()
+	}
+
+	componentDidMount() {
+		this.setState({ tab1Open : true })
 	}
 
 	tabClick = (e) => {
 	  if(e.target.classList.contains('tabs')){
+
+	  	this.setState({
+	  		tab1Open : false,
+	  		tab2Open : false,
+	  		tab3Open : false,
+	  	})
+
 	    document.querySelectorAll('.selected').forEach( item => item.classList.remove('selected'));
 	    e.target.classList.add('selected');
 
@@ -43,11 +62,22 @@ class InfoMenu extends React.Component {
 	        tab.classList.add('selected');
 	      }
 	  	})
+
+	    if(clickedTab === 'tab1'){
+	  		this.setState({ tab1Open : true })
+	    }
+	    else if(clickedTab === 'tab2'){
+	  		this.setState({ tab2Open : true })
+	    }
+	    else{
+	  		this.setState({ tab3Open : true })
+	    }
 	  }
+	  console.log(this.state)
 	}
 
 	render(){
-		console.log(this.props.item)
+		console.log(this.state)
 		return(
 			<div>
 				<div id="info-menu-close"
@@ -68,8 +98,13 @@ class InfoMenu extends React.Component {
   				    	<h1>{this.props.item.map(item => { return item.name })[0]}</h1>
   				    	<p>Latitude: {this.props.item.map(item => { return item.lat })[0]}, Longitude: {this.props.item.map(item => { return item.lng })[0]}</p>
 				  </div>
+
 				  <div className="tab-content tab2">
-				  	<h1>{this.state.venue.name}</h1>
+				  	<p>Recommended food/drink in this area from FourSquare: </p><br />
+				  	<p>{this.state.venue.name}</p>
+				  	{this.state.venue.location && this.state.venue.location.formattedAddress.map( (line, index) =>
+				  		<p key={index}>{line}</p>
+				  		)}
 				  </div>
 				  <div className="tab-content tab3">And also Tab 3's content is right here.</div>
 				</div>
