@@ -24,25 +24,20 @@ class InfoMenu extends React.Component {
     	let result = data.response.groups[0].items[0].venue
 
     	this.setState({ venue : result })
-
-    	console.log('foursquare rendered')
-
     })
     .catch(err => {
        	this.setState({ venue : ['Information not available', err]})
-    })
-
-	}
+    	})
+	  }
 	}
 
 	componentWillReceiveProps(){
-		this.setState({ venue : [] })
-		console.log('props rec')
-		this.foursquare()
+		this.setState({ venue : [] }, ()=> {
+			this.foursquare()
+		})
 	}
 
 	componentDidMount() {
-		console.log('mounted')
 	}
 
 	tabClick = (e) => {
@@ -73,9 +68,6 @@ class InfoMenu extends React.Component {
 	  		this.setState({ tab2Open : true }, () => {
 	  			this.foursquare()
 			})
-	  		console.log(this.state)
-
-
 	    }
 	    else{
 	  		this.setState({ tab3Open : true })
@@ -85,9 +77,7 @@ class InfoMenu extends React.Component {
 	}
 
 	render(){
-		console.log(this.props)
-		console.log(this.state)
-			return(
+		return(
 			<div>
 				<div id="info-menu-close"
 					onClick={this.closeMenu}
