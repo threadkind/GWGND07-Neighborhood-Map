@@ -98,6 +98,22 @@ html, body, main-content {
 .sidebar ul li {
   cursor: pointer;
 }
+#sidebar-control {
+  background: var(--accent);
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  cursor: pointer;
+}
+.minimized {
+  height: 50px;
+}
+
+.control-text {
+  width: 100%;
+  text-align: center;
+}
 
 #info-menu {
   position: absolute;

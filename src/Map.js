@@ -46,7 +46,6 @@ class Map extends React.Component {
   }
 
   listItemClick = (listItem) => {
-    console.log(listItem)
     this.setState({ infoMenu: true,
                   clickedItem : listItem})
   }

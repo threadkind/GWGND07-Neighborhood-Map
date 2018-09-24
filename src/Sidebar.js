@@ -4,11 +4,39 @@ import React from 'react';
 class Sidebar extends React.Component {
 
 	state = {
+		menuOpen : false,
 		markers : this.props.markers,
 		selectedListItem : {},
 		photoUrl : '',
 		photoLink : ''
 	}
+
+	toggleSidebar = (e) => {
+		let sidebar = document.querySelector('.sidebar')
+		let sidebarPhoto = document.querySelector('#sidebar-photo')
+		let sidebarLocations = document.querySelector('#sidebar-locations')
+		let sidebarList = document.querySelector('#sidebar-list')
+
+
+		document.querySelectorAll('.control-text').forEach( element => element.classList.toggle('hidden'))
+
+		if(this.state.menuOpen === false){
+			this.setState({ menuOpen : true})
+			sidebar.classList.toggle('minimized')
+			sidebarPhoto.classList.toggle('hidden')
+			sidebarLocations.classList.toggle('hidden')
+			sidebarList.classList.toggle('hidden')
+		}
+		else {
+			this.setState({ menuOpen : false})
+			sidebar.classList.toggle('minimized')
+			sidebarPhoto.classList.toggle('hidden')
+			sidebarLocations.classList.toggle('hidden')
+			sidebarList.classList.toggle('hidden')
+		}
+
+		console.log(e.target.classList)
+			}
 
 	handleSidebarClick = (e) => {
 		let clickedListItem = this.props.markers.filter( place => { return place.id === Number(e.target.id)} )
@@ -47,7 +75,7 @@ class Sidebar extends React.Component {
   	return(
   		<div>
 
-	  		<div className='sidebar hidden'>
+	  		<div className='sidebar'>
 	  		  <div id="sidebar-photo-contain">
 		  		  <a href={this.state.photoLink} target="_blank">
 		  		  	<img id="sidebar-photo" src={this.state.photoUrl} alt="Seattle from Unsplash.com" />
@@ -55,7 +83,7 @@ class Sidebar extends React.Component {
 	  		  </div>
 
 
-			  <select name="locations"
+			  <select id="sidebar-locations" name="locations"
 			  		onChange={this.filterLocations}
 >
 			    <option value="all" >All locations...</option>
@@ -66,7 +94,7 @@ class Sidebar extends React.Component {
 			    <option value="museum">Museum</option>
 			  </select>
 
-  			<ul>
+  			<ul id="sidebar-list">
 	      		{this.state.markers.map((marker) =>
 	      			<li key={marker.id}
 	      				id={`${marker.id}`}
@@ -76,8 +104,12 @@ class Sidebar extends React.Component {
 	      		)}
 
   			</ul>
-
-	  		</div>
+  			<div id='sidebar-control'
+  				onClick={this.toggleSidebar}>
+  				<span className='control-text hidden'>- EXPAND -</span>
+  				<span className='control-text'>- COLLAPSE -</span>
+  			</div>
+	  	  </div>
 	  	</div>
   	)
   }
