@@ -17,41 +17,32 @@ class Map extends React.Component {
     markerLat : '',
     markerLng : '',
     results : [],
-    locations : []
+    locations : [],
+    infoMenu : false,
+    clickedListItem : []
   }
 
-    toggleWindow = (e) => {
-    if(e !== undefined){
-      if(e.latLng.lat() !== this.markerLat && e.latLng.lng() !== this.markerLng && this.state.infoWindowOpen === true){
-        this.setState({ markerLat : e.latLng.lat(),
-                        markerLng : e.latLng.lng()
-                      })
-      }
-      else if( this.state.infoWindowOpen === false ){
-        this.setState({ infoWindowOpen : true,
-                        markerLat : e.latLng.lat(),
-                        markerLng : e.latLng.lng()
-                      })
-      }
-      else {
-        this.setState({ infoWindowOpen : false,
-                        markerLat : '',
-                        markerLng :''
-                      })
-      }
-    }
+  viewInfoMenu = () => {
+    this.setState({ infoMenu : true })
+  }
+
+  closeInfoMenu = () => {
+    this.setState({ infoMenu : false })
   }
 
   markerClick = (filteredMarkers) => {
-    console.log(this)
-    console.log(filteredMarkers)
     this.setState({ markers : filteredMarkers })
   }
 
+  listItemClick = (listItem) => {
+    console.log('back in the main app')
+    this.setState({ clickedListItem : listItem})
+    this.viewInfoMenu()
+  }
+
+
 
   render() {
-          console.log(this.state)
-
 
   	return (
   		<GoogleMap
@@ -71,7 +62,7 @@ class Map extends React.Component {
             icon={{ url : icon,
                scaledSize : {width: 20, height: 32}
                }}
-            onClick={this.toggleWindow}
+            onClick={this.viewInfoMenu}
           >
           </Marker>
         )}
@@ -81,12 +72,17 @@ class Map extends React.Component {
               >
               <div>Coordinates of this location are {this.state.markerLat}, {this.state.markerLng}</div>
           </InfoWindow>}
+
           <Sidebar
             markers={this.props.markers}
             markerClick={this.markerClick.bind(this)}
+            listItemClick={this.listItemClick.bind(this)}
           />
 
-          <InfoMenu />
+          {this.state.infoMenu && <InfoMenu
+            closeMenu={this.closeInfoMenu}
+          />}
+
   		</GoogleMap>
   	)
   }

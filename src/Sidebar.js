@@ -4,13 +4,14 @@ import React from 'react';
 class Sidebar extends React.Component {
 
 	state = {
-		markers : this.props.markers
+		markers : this.props.markers,
+		selectedListItem : {}
 	}
 
 	handleSidebarClick = (e) => {
-		console.log(this.props)
-		let clickedMarker = this.props.markers[e.target.id-1]
-		console.log(this.state.markers)
+		let clickedListItem = this.props.markers.filter( place => { return place.id === Number(e.target.id)} )
+		this.setState({ selectedListItem : clickedListItem })
+		this.props.listItemClick(clickedListItem)
 	}
 
 	filterLocations = (e) => {

@@ -80,7 +80,7 @@ html, body, main-content {
 .hidden {
   display: none;
 }
-#sidebar ul li {
+.sidebar ul li {
   cursor: pointer;
 }
 
@@ -92,7 +92,7 @@ html, body, main-content {
   margin: 0;
   height: 25vh;
   width: 90vw;
-  border-radius: 0 10px 0;
+  border-radius: 0 10px 0 0;
   background: var(--accent);
   box-shadow: 2px 2px 10px var(--shadow);
 }

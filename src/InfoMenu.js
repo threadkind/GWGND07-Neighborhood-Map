@@ -1,8 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 class InfoMenu extends React.Component {
 	state = {
-		view: false
+		view: this.props.view
+	}
+
+	closeMenu = () => {
+		this.props.closeMenu()
 	}
 
 	tabClick = (e) => {
@@ -22,7 +26,9 @@ class InfoMenu extends React.Component {
 	render(){
 		return(
 			<div>
-				<div id="info-menu-close">X</div>
+				<div id="info-menu-close"
+					onClick={this.closeMenu}
+				>X</div>
 
 				<div id="info-menu">
 				  <div id="tab-contain"
