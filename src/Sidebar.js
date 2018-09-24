@@ -5,7 +5,9 @@ class Sidebar extends React.Component {
 
 	state = {
 		markers : this.props.markers,
-		selectedListItem : {}
+		selectedListItem : {},
+		photoUrl : '',
+		photoLink : ''
 	}
 
 	handleSidebarClick = (e) => {
@@ -28,33 +30,54 @@ class Sidebar extends React.Component {
 		}
 	}
 
+	componentDidMount() {
+
+		fetch('https://api.unsplash.com/photos/?client_id=dfac3ef8c935541b727ab3164de25b94b85f9a4181868d008afd3c3fc41bcf7a&page=1&query=seattle')
+		.then(response => { return response.json() })
+		.then(data => {
+			let random = Math.floor(Math.random()*data.length)
+
+			this.setState({ photoUrl : data[random].urls.thumb, photoLink : data[random].links.html })
+
+		})
+
+	}
+
   render() {
+  	console.log(this.state.photoUrl)
   	return(
   		<div>
 
 	  		<div className='sidebar hidden'>
+	  		  <div id="sidebar-photo-contain">
+		  		  <a href={this.state.photoLink} target="_blank">
+		  		  	<img id="sidebar-photo" src={this.state.photoUrl} alt="Seattle from Unsplash.com" />
+		  		  </a>
+	  		  </div>
 
-				  <select name="locations"
-				  		onChange={this.filterLocations}
+
+			  <select name="locations"
+			  		onChange={this.filterLocations}
 >
-				    <option value="all" >All locations...</option>
-				    <option value="landmark">Landmark</option>
-				    <option value="food">Food</option>
-				    <option value="gaming">Gaming</option>
-				    <option value="transportation">Transportation</option>
-				    <option value="museum">Museum</option>
-				  </select>
+			    <option value="all" >All locations...</option>
+			    <option value="landmark">Landmark</option>
+			    <option value="food">Food</option>
+			    <option value="gaming">Gaming</option>
+			    <option value="transportation">Transportation</option>
+			    <option value="museum">Museum</option>
+			  </select>
 
-	  			<ul>
-		      		{this.state.markers.map((marker) =>
-		      			<li key={marker.id}
-		      				id={`${marker.id}`}
-		      				onClick={this.handleSidebarClick}>
-		      			{marker.name}
-		      			</li>
-		      		)}
+  			<ul>
+	      		{this.state.markers.map((marker) =>
+	      			<li key={marker.id}
+	      				id={`${marker.id}`}
+	      				onClick={this.handleSidebarClick}>
+	      			{marker.name}
+	      			</li>
+	      		)}
 
-	  			</ul>
+  			</ul>
+
 	  		</div>
 	  	</div>
   	)

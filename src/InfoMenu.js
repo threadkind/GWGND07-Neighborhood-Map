@@ -6,7 +6,6 @@ class InfoMenu extends React.Component {
 		lat : 47.651105,
 		lon : -122.347272,
 		category: 'landmark',
-		randomPhoto : '',
 		venue : []
 	}
 
@@ -16,17 +15,6 @@ class InfoMenu extends React.Component {
 
 
 	componentDidMount() {
-		fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=9d460bc4de83889dc4b1525544f85924&safe_search=safe&lat=${this.state.lat}&lon=${this.state.lon}&format=json&nojsoncallback=1`)
-		.then(data => { return data.json() })
-		.then(result => {
-			let randomPhoto = Math.floor(Math.random() * result.photos.photo.length)
-
-			let photo = `https://farm${result.photos.photo[randomPhoto].farm}.staticflickr.com/${result.photos.photo[randomPhoto].server}/${result.photos.photo[randomPhoto].id}_${result.photos.photo[randomPhoto].secret}_m.jpg`
-
-			this.setState({ randomPhoto : photo })
-		})
-
-
 		fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.state.lat},${this.state.lon}&query=${this.state.category}`)
     .then(res => {
 		return res.json()
@@ -77,11 +65,11 @@ class InfoMenu extends React.Component {
 
 
 				  <div className="tab-content tab1 selected">
-  				    	<p>{this.props.item.map(item => { return item.name })[0]}</p>
-				    	<img src={this.state.randomPhoto} />
+  				    	<h1>{this.props.item.map(item => { return item.name })[0]}</h1>
+  				    	<p>Latitude: {this.props.item.map(item => { return item.lat })[0]}, Longitude: {this.props.item.map(item => { return item.lng })[0]}</p>
 				  </div>
 				  <div className="tab-content tab2">
-				  	<p>{this.state.venue.name}</p>
+				  	<h1>{this.state.venue.name}</h1>
 				  </div>
 				  <div className="tab-content tab3">And also Tab 3's content is right here.</div>
 				</div>
