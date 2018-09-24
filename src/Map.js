@@ -19,16 +19,13 @@ class Map extends React.Component {
     results : [],
     locations : [],
     infoMenu : false,
-    clickedListItem : [],
     clickedItem : []
   }
 
   viewInfoMenu = (e) => {
-    this.setState({ infoMenu : true })
 
     let lat = e.latLng.lat().toFixed(6)
     let lng = e.latLng.lng().toFixed(6)
-    console.log(lat, lng)
 
     let matched = (this.props.markers.filter(marker => {
       if(marker.lat.toFixed(6) === lat && marker.lng.toFixed(6) === lng){
@@ -36,8 +33,8 @@ class Map extends React.Component {
       }
      }))
 
-    this.setState({ clickedItem : matched})
-    console.log(matched)
+    this.setState({ infoMenu : true,
+                   clickedItem : matched })
   }
 
   closeInfoMenu = () => {
@@ -49,9 +46,9 @@ class Map extends React.Component {
   }
 
   listItemClick = (listItem) => {
-    console.log('back in the main app')
-    this.setState({ clickedListItem : listItem})
-    this.viewInfoMenu()
+    console.log(listItem)
+    this.setState({ infoMenu: true,
+                  clickedItem : listItem})
   }
 
 
