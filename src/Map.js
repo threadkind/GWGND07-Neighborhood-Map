@@ -19,11 +19,25 @@ class Map extends React.Component {
     results : [],
     locations : [],
     infoMenu : false,
-    clickedListItem : []
+    clickedListItem : [],
+    clickedItem : []
   }
 
-  viewInfoMenu = () => {
+  viewInfoMenu = (e) => {
     this.setState({ infoMenu : true })
+
+    let lat = e.latLng.lat().toFixed(6)
+    let lng = e.latLng.lng().toFixed(6)
+    console.log(lat, lng)
+
+    let matched = (this.props.markers.filter(marker => {
+      if(marker.lat.toFixed(6) === lat && marker.lng.toFixed(6) === lng){
+        return marker
+      }
+     }))
+
+    this.setState({ clickedItem : matched})
+    console.log(matched)
   }
 
   closeInfoMenu = () => {
@@ -60,7 +74,7 @@ class Map extends React.Component {
             id={`m${marker.id}`}
             position={marker}
             icon={{ url : icon,
-               scaledSize : {width: 20, height: 32}
+               scaledSize : {width: 30, height: 52}
                }}
             onClick={this.viewInfoMenu}
           >
@@ -81,6 +95,7 @@ class Map extends React.Component {
 
           {this.state.infoMenu && <InfoMenu
             closeMenu={this.closeInfoMenu}
+            item={this.state.clickedItem}
           />}
 
   		</GoogleMap>

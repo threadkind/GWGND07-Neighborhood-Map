@@ -24,6 +24,7 @@ class InfoMenu extends React.Component {
 	}
 
 	render(){
+		console.log(this.props.item.map(item => { return item.name })[0])
 		return(
 			<div>
 				<div id="info-menu-close"
@@ -39,7 +40,7 @@ class InfoMenu extends React.Component {
 				  </div>
 
 
-				  <span className="tab-content tab1 selected">Content for Tab 1.</span>
+				  <span className="tab-content tab1 selected">{this.props.item.map(item => { return item.name })[0]}</span>
 				  <span className="tab-content tab2">Here is Tab 2's content.</span>
 				  <span className="tab-content tab3">And also Tab 3's content is right here.</span>
 				</div>
