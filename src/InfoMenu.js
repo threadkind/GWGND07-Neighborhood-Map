@@ -2,10 +2,9 @@ import React from 'react';
 
 class InfoMenu extends React.Component {
 	state = {
-		category: 'resturants',
 		venue : [],
 		item : this.props.item,
-		tab1Open : false,
+		tab1Open : true,
 		tab2Open : false,
 		tab3Open : false
 	}
@@ -16,8 +15,8 @@ class InfoMenu extends React.Component {
 
 	foursquare = () => {
 
-		if(this.state.tab2Open){
-		fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.props.item[0].lat},${this.props.item[0].lng}&query=${this.state.category}`)
+	if(this.state.tab2Open){
+		fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.props.item[0].lat},${this.props.item[0].lng}&query=restaurant`)
     .then(res => {
 		return res.json()
     })
@@ -25,6 +24,8 @@ class InfoMenu extends React.Component {
     	let result = data.response.groups[0].items[0].venue
 
     	this.setState({ venue : result })
+
+    	console.log('foursquare rendered')
 
     })
     .catch(err => {
@@ -36,15 +37,17 @@ class InfoMenu extends React.Component {
 
 	componentWillReceiveProps(){
 		this.setState({ venue : [] })
-
+		console.log('props rec')
 		this.foursquare()
 	}
 
 	componentDidMount() {
-		this.setState({ tab1Open : true })
+		console.log('mounted')
 	}
 
 	tabClick = (e) => {
+	  this.foursquare()
+
 	  if(e.target.classList.contains('tabs')){
 
 	  	this.setState({
@@ -67,20 +70,24 @@ class InfoMenu extends React.Component {
 	  		this.setState({ tab1Open : true })
 	    }
 	    else if(clickedTab === 'tab2'){
-	  		this.setState({ tab2Open : true })
+	  		this.setState({ tab2Open : true }, () => {
+	  			this.foursquare()
+			})
+	  		console.log(this.state)
+
+
 	    }
 	    else{
 	  		this.setState({ tab3Open : true })
 	    }
 	  }
 
-	  this.foursquare()
-	  console.log(this.state)
 	}
 
 	render(){
+		console.log(this.props)
 		console.log(this.state)
-		return(
+			return(
 			<div>
 				<div id="info-menu-close"
 					onClick={this.closeMenu}

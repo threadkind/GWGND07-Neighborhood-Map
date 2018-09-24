@@ -44,7 +44,6 @@ class Sidebar extends React.Component {
 	}
 
   render() {
-  	console.log(this.state.photoUrl)
   	return(
   		<div>
 
