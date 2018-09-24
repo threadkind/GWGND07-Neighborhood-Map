@@ -5,7 +5,9 @@ class InfoMenu extends React.Component {
 		view : this.props.view,
 		lat : 47.651105,
 		lon : -122.347272,
-		randomPhoto : ''
+		category: 'landmark',
+		randomPhoto : '',
+		venue : []
 	}
 
 	closeMenu = () => {
@@ -23,6 +25,23 @@ class InfoMenu extends React.Component {
 
 			this.setState({ randomPhoto : photo })
 		})
+
+
+		fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.state.lat},${this.state.lon}&query=${this.state.category}`)
+    .then(res => {
+		return res.json()
+    })
+    .then(data => {
+    	let result = data.response.groups[0].items[0].venue
+
+    	console.log(result)
+
+    	this.setState({ venue : result })
+
+    })
+    .catch(err => {
+       	console.log(err)
+    });
 	}
 
 	tabClick = (e) => {
@@ -52,7 +71,7 @@ class InfoMenu extends React.Component {
 				  	onClick={this.tabClick}>
 				    <div className="tabs tab1 selected">
 				    Basic Info </div>
-				    <div className="tabs tab2">Tab 2</div>
+				    <div className="tabs tab2">FourSquare</div>
 				    <div className="tabs tab3">Tab 3</div>
 				  </div>
 
@@ -61,7 +80,9 @@ class InfoMenu extends React.Component {
   				    	<p>{this.props.item.map(item => { return item.name })[0]}</p>
 				    	<img src={this.state.randomPhoto} />
 				  </div>
-				  <div className="tab-content tab2">Here is Tab 2's content.</div>
+				  <div className="tab-content tab2">
+				  	<p>{this.state.venue.name}</p>
+				  </div>
 				  <div className="tab-content tab3">And also Tab 3's content is right here.</div>
 				</div>
 
