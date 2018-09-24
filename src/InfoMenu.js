@@ -73,6 +73,8 @@ class InfoMenu extends React.Component {
 	  		this.setState({ tab3Open : true })
 	    }
 	  }
+
+	  this.foursquare()
 	  console.log(this.state)
 	}
 
@@ -88,8 +90,8 @@ class InfoMenu extends React.Component {
 				  <div id="tab-contain"
 				  	onClick={this.tabClick}>
 				    <div className="tabs tab1 selected">
-				    Basic Info </div>
-				    <div className="tabs tab2">FourSquare</div>
+				    🛈 </div>
+				    <div className="tabs tab2">🍽</div>
 				    <div className="tabs tab3">Tab 3</div>
 				  </div>
 
