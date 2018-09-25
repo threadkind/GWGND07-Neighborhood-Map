@@ -1,5 +1,9 @@
 import React from 'react';
 
+const flickrIcon = require("./foursquare.png");
+const foursquareIcon = require("./flickr.png");
+
+
 class InfoMenu extends React.Component {
 	state = {
 		venue : [],
@@ -79,7 +83,6 @@ class InfoMenu extends React.Component {
 
 
 	componentWillReceiveProps(){
-		console.log('props rec')
 		this.setState({ venue : [] }, ()=> {
 			this.foursquare()
 		})
@@ -92,8 +95,6 @@ class InfoMenu extends React.Component {
 	}
 
 	tabClick = (e) => {
-		console.log(e.target)
-
 	  if(e.target.classList.contains('tabs') || e.target.classList.contains('emoji')){
 	  	this.setState({
 	  		tab1Open : false,
@@ -114,6 +115,8 @@ class InfoMenu extends React.Component {
 	    document.querySelectorAll('.selected').forEach( item => item.classList.remove('selected'));
 	    	targetTab.classList.add('selected');
 
+	    document.querySelectorAll('.sm-icons').forEach( item => item.classList.add('hidden'))
+
 	    const clickedTab = targetTab.classList[1];
 	    document.querySelectorAll('.tab-content').forEach( tab => {
 	      if(tab.classList.contains(clickedTab)){
@@ -125,12 +128,14 @@ class InfoMenu extends React.Component {
 	  		this.setState({ tab1Open : true })
 	    }
 	    else if(clickedTab === 'tab2'){
+	    	document.querySelector('.flIcon').classList.remove('hidden')
 	  		this.setState({ tab2Open : true }, () => {
 	  			this.foursquare()
 			})
 	    }
 	    else{
 	  		this.setState({ tab3Open : true }, () => {
+	  			document.querySelector('.fsIcon').classList.remove('hidden')
 	  			this.flickr()
 			})
 	    }
@@ -159,6 +164,10 @@ class InfoMenu extends React.Component {
 				    	</div>
 				  </div>
 
+				  <div className="icon-contain">
+				  	<img className="sm-icons flIcon hidden" src={ flickrIcon } alt="flickr icon" />
+				  	<img className="sm-icons fsIcon hidden" src={ foursquareIcon } alt="foursquare icon" />
+				  </div>
 
 				  <div className="tab-content tab1 selected">
   				    	<h1>{this.props.item.map(item => { return item.name })[0]}</h1>
