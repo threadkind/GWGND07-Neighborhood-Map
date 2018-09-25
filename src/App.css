@@ -1,6 +1,7 @@
 :root {
   --main: #294f59;
   --accent: #17ba83;
+  --error: rgb(255, 102, 102);
   --shadow: rgba(0,0,0,0.8);
   --text: #fff;
 
@@ -72,6 +73,12 @@ html, body, main-content {
   padding: 2%;
   box-shadow: 2px 2px 10px var(--shadow);
   border-radius: 10px;
+}
+
+.unsplash-error {
+  font-size: 1.2vw;
+  font-family: var(--accent-font);
+  color: var(--error);
 }
 #sidebar-photo-contain {
   width: 100%;
@@ -237,7 +244,10 @@ html, body, main-content {
 }
 .flickr-error {
   text-align: center;
-  color: rgb(255,255,255);
+  color: var(--error);
+}
+.foursquare-error {
+  color: var(--error);
 }
 
 .hidden {

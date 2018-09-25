@@ -62,6 +62,9 @@ class Sidebar extends React.Component {
 	}
 
 	componentDidMount() {
+		if(document.querySelector('.unsplash-error').classList.contains('hidden') === false) {
+			document.querySelector('.unsplash-error').classList.add('hidden')
+		}
 
 		fetch('https://api.unsplash.com/photos/?client_id=dfac3ef8c935541b727ab3164de25b94b85f9a4181868d008afd3c3fc41bcf7a&page=1&query=seattle landmarks')
 		.then(response => { return response.json() })
@@ -71,6 +74,9 @@ class Sidebar extends React.Component {
 			this.setState({ photoUrl : data[random].urls.thumb, photoLink : data[random].links.html })
 
 		})
+		.catch(err =>
+			document.querySelector('.unsplash-error').classList.remove('hidden')
+		)
 
 	}
 
@@ -78,6 +84,7 @@ class Sidebar extends React.Component {
   	return(
   		<div>
 	  		<div className='sidebar'>
+	  		  <div className="unsplash-error hidden">Unable to load image from Unsplash</div>
 	  		  <div id="sidebar-photo-contain">
 	  		  	{ this.state.photoUrl !== '' &&
 		  		  <a style={{display: "table-cell"}} href={this.state.photoLink} target="_blank">
