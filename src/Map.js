@@ -34,7 +34,6 @@ class Map extends React.Component {
      }))
 
     let animate = this.state.markers
-    console.log(matched)
 
     for(let i = 0; i < animate.length; i++){
       if(animate[i].name === matched[0].name){

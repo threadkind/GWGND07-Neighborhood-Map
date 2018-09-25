@@ -21,6 +21,18 @@ class InfoMenu extends React.Component {
 
 	foursquare = () => {
 		if(this.state.tab2Open){
+
+
+			if(document.querySelector('.fs-recommended').classList.contains('hidden')){
+	       		document.querySelector('.fs-recommended').classList.remove('hidden')
+			}
+
+			if(document.querySelector('.foursquare-error').classList.contains('hidden') === false ){
+	       		document.querySelector('.fs-recommended').classList.add('hidden')
+			}
+
+
+
 			fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.props.item[0].lat},${this.props.item[0].lng}&query=restaurant`)
 	    .then(res => {
 			return res.json()
@@ -31,7 +43,8 @@ class InfoMenu extends React.Component {
 	    	this.setState({ venue : result })
 	    })
 	    .catch(err => {
-	       	this.setState({ venue : ['Information not available', err]})
+	       	document.querySelector('.foursquare-error').classList.remove('hidden')
+	       	document.querySelector('.fs-recommended').classList.add('hidden')
 	    	})
 		  }
 	}
@@ -190,7 +203,8 @@ class InfoMenu extends React.Component {
 				  </div>
 
 				  <div className="tab-content tab2">
-				  	<p>Recommended food/drink in this area from FourSquare: </p><br />
+				  	<p className="foursquare-error hidden">Information not available from FourSquare</p>
+				  	<p className="fs-recommended">Recommended food/drink in this area:</p><br />
 				  	<p>{this.state.venue.name}</p>
 				  	{this.state.venue.location && this.state.venue.location.formattedAddress.map( (line, index) =>
 				  		<p key={index}>{line}</p>
