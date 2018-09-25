@@ -111,6 +111,7 @@ class Sidebar extends React.Component {
 	      			<li key={marker.id}
 	      				id={`${marker.id}`}
 	      				onClick={this.handleSidebarClick}
+	      				tabIndex={0}
 						role="link"
 						aria-label={marker.name}
 					>
@@ -120,6 +121,9 @@ class Sidebar extends React.Component {
 
   			</ul>
   			<div id='sidebar-control'
+  				tabIndex={0}
+				role="button"
+				aria-label='sidebar control'
   				onClick={this.toggleSidebar}>
   				<span className='control-text hidden'>- EXPAND LOCATIONS -</span>
   				<span className='control-text'>- COLLAPSE LOCATIONS-</span>

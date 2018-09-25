@@ -179,13 +179,25 @@ class InfoMenu extends React.Component {
 				  <div id="tab-contain"
 				  	onClick={this.tabClick}>
 				    <div className="tabs tab1 selected">
-				    	<span className="emoji" role="img" aria-label="information about location">🛈</span>
+				    	<span className="emoji"
+				    		role="img"
+				    		aria-label="information about location"
+				    		tabIndex={0}
+				    	>🛈</span>
 				    </div>
 				    <div className="tabs tab2">
-				    	<span className="emoji" role="img" aria-label="recommended food near location">🍽</span>
+				    	<span className="emoji"
+				    		role="img"
+				    		aria-label="recommended food near location"
+							tabIndex={0}
+				    	>🍽</span>
 				    </div>
 				    <div className="tabs tab3">
-				    	<span className="emoji" role="img" aria-label="photos from location">📷</span>
+				    	<span className="emoji"
+				    		role="img"
+				    		aria-label="photos from location"
+							tabIndex={0}
+				    		>📷</span>
 				    	</div>
 				  </div>
 
@@ -194,7 +206,10 @@ class InfoMenu extends React.Component {
 				  	<img className="sm-icons fsIcon hidden" src={ foursquareIcon } alt="foursquare icon" />
 				  </div>
 
-				  <div className="tab-content tab1 selected">
+				  <div className="tab-content tab1 selected"
+				  		role="information"
+				    	aria-label="basic information about location"
+				  >
   				    	<h1>{this.props.item.map(item => { return item.name })[0]}</h1>
   				    	<p>Latitude: {this.props.item.map(item => { return item.lat })[0]}, Longitude: {this.props.item.map(item => { return item.lng })[0]}</p>
 				  </div>
@@ -211,7 +226,9 @@ class InfoMenu extends React.Component {
 				  	<div className="flickr-error hidden">Unable to load images from Flickr</div>
 				  	<div id={'infomenu-photo-contain'}>
 					  	{this.state.photos.length > 0 && this.state.photos.map( (photo, index) =>
-					  		<img key={index} src={photo} alt={this.props.item.name} onClick={this.openPhotoOverlay}/>
+					  		<img key={index} src={photo} alt={this.props.item.name} onClick={this.openPhotoOverlay}
+					  			tabIndex={0}
+					  		/>
 
 					  	)}
 				  	</div>
