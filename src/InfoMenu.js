@@ -62,7 +62,6 @@ class InfoMenu extends React.Component {
 					photoData = data.photos.photo
 
 				}
-					console.log(photoData)
 
 
 				for(let j = 0; j < photoData.length; j++){
@@ -70,12 +69,10 @@ class InfoMenu extends React.Component {
 					let url = `https://farm${photoData[j].farm}.staticflickr.com/${photoData[j].server}/${photoData[j].id}_${photoData[j].secret}_q.jpg`
 
 					photoUrls.push(url)
-					console.log(url)
 
 				}
 
 				this.setState({ photos : photoUrls })
-				console.log(photoUrls)
 			})
 		}
 	}
@@ -95,19 +92,29 @@ class InfoMenu extends React.Component {
 	}
 
 	tabClick = (e) => {
+		console.log(e.target)
 
-	  if(e.target.classList.contains('tabs')){
-
+	  if(e.target.classList.contains('tabs') || e.target.classList.contains('emoji')){
 	  	this.setState({
 	  		tab1Open : false,
 	  		tab2Open : false,
 	  		tab3Open : false,
 	  	})
 
-	    document.querySelectorAll('.selected').forEach( item => item.classList.remove('selected'));
-	    e.target.classList.add('selected');
+	  	let targetTab;
 
-	    const clickedTab =e.target.classList[1];
+	  	if(e.target.classList.contains('tabs')){
+	  		targetTab = e.target
+	  	}
+	  	else(
+	  		targetTab = e.target.parentElement
+	  	)
+
+
+	    document.querySelectorAll('.selected').forEach( item => item.classList.remove('selected'));
+	    	targetTab.classList.add('selected');
+
+	    const clickedTab = targetTab.classList[1];
 	    document.querySelectorAll('.tab-content').forEach( tab => {
 	      if(tab.classList.contains(clickedTab)){
 	        tab.classList.add('selected');
@@ -142,13 +149,13 @@ class InfoMenu extends React.Component {
 				  <div id="tab-contain"
 				  	onClick={this.tabClick}>
 				    <div className="tabs tab1 selected">
-				    	<span role="img" aria-label="information about location">🛈</span>
+				    	<span className="emoji" role="img" aria-label="information about location">🛈</span>
 				    </div>
 				    <div className="tabs tab2">
-				    	<span role="img" aria-label="recommended food near location">🍽</span>
+				    	<span className="emoji" role="img" aria-label="recommended food near location">🍽</span>
 				    </div>
 				    <div className="tabs tab3">
-				    	<span role="img" aria-label="photos from location">📷</span>
+				    	<span className="emoji" role="img" aria-label="photos from location">📷</span>
 				    	</div>
 				  </div>
 
