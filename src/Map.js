@@ -35,13 +35,12 @@ class Map extends React.Component {
       }
      }))
 
-    console.log(matched[0].id)
-    console.log(this.props.markers)
-    let animate = this.props.markers
+    let animate = this.state.markers
+
 
     for(let i = 0; i < animate.length; i++){
-      console.log(((matched[0].id)-1), i)
-      if(i === ((matched[0].id)-1)){
+      console.log(matched[0].name, animate[i].name)
+      if(animate[i].name === matched[0].name){
         console.log(animate[i])
         animate[i].animate = 4
       }
