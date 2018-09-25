@@ -38,6 +38,9 @@ class InfoMenu extends React.Component {
 
 	flickr = () => {
 		if(this.state.tab3Open){
+			if(document.querySelector('.flickr-error').classList.contains('hidden')){
+				document.querySelector('.flickr-error').classList.add('hidden')
+			}
 
 			let photoUrls = []
 
@@ -77,6 +80,7 @@ class InfoMenu extends React.Component {
 
 				this.setState({ photos : photoUrls })
 			})
+			.catch(err => document.querySelector('.flickr-error').classList.remove('hidden'))
 		}
 	}
 
@@ -193,6 +197,7 @@ class InfoMenu extends React.Component {
 				  		)}
 				  </div>
 				  <div className="tab-content tab3">
+				  	<div className="flickr-error hidden">Unable to load images from Flickr</div>
 				  	<div id={'infomenu-photo-contain'}>
 					  	{this.state.photos.length > 0 && this.state.photos.map( (photo, index) =>
 					  		<img key={index} src={photo} alt={this.props.item.name} onClick={this.openPhotoOverlay}/>
