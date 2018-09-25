@@ -96,7 +96,8 @@ class Sidebar extends React.Component {
 
 			  <select id="sidebar-locations" name="locations"
 			  		onChange={this.filterLocations}
->
+			  		aria-label="Dropdown to filter locations"
+				>
 			    <option value="all" >All locations...</option>
 			    <option value="landmark">Landmark</option>
 			    <option value="food">Food</option>
@@ -109,7 +110,10 @@ class Sidebar extends React.Component {
 	      		{this.state.markers.map((marker) =>
 	      			<li key={marker.id}
 	      				id={`${marker.id}`}
-	      				onClick={this.handleSidebarClick}>
+	      				onClick={this.handleSidebarClick}
+						role="link"
+						aria-label={marker.name}
+					>
 	      			{marker.name}
 	      			</li>
 	      		)}
