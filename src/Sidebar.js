@@ -1,6 +1,8 @@
 import React from 'react';
 
 
+
+
 class Sidebar extends React.Component {
 
 	state = {
@@ -75,7 +77,6 @@ class Sidebar extends React.Component {
   render() {
   	return(
   		<div>
-
 	  		<div className='sidebar'>
 	  		  <div id="sidebar-photo-contain">
 		  		  <a href={this.state.photoLink} target="_blank">

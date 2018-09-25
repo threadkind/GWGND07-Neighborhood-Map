@@ -4,6 +4,7 @@ import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
 import InfoMenu from './InfoMenu'
 
+
 const mapStyles = require("./map-styles.json");
 const icon = require("./marker.svg");
 
@@ -53,7 +54,6 @@ class Map extends React.Component {
 
 
   render() {
-
   	return (
   		<GoogleMap
   			defaultZoom={10}

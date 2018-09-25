@@ -3,6 +3,7 @@ import React from 'react';
 class InfoMenu extends React.Component {
 	state = {
 		venue : [],
+		photos : [],
 		item : this.props.item,
 		tab1Open : true,
 		tab2Open : false,
@@ -14,34 +15,86 @@ class InfoMenu extends React.Component {
 	}
 
 	foursquare = () => {
+		if(this.state.tab2Open){
+			fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.props.item[0].lat},${this.props.item[0].lng}&query=restaurant`)
+	    .then(res => {
+			return res.json()
+	    })
+	    .then(data => {
+	    	let result = data.response.groups[0].items[0].venue
 
-	if(this.state.tab2Open){
-		fetch(`https://api.foursquare.com/v2/venues/explore?client_id=E0NLFW2WJVS4YWLKUM0Q5OKOK4SURQ3NLQ45GO1KUUFJZSPE&client_secret=UF0RQFBSCHWZVXFCRETXNSR3J1QA5Y45WKAOV14OWIOYPISS&v=20180323&limit=1&ll=${this.props.item[0].lat},${this.props.item[0].lng}&query=restaurant`)
-    .then(res => {
-		return res.json()
-    })
-    .then(data => {
-    	let result = data.response.groups[0].items[0].venue
-
-    	this.setState({ venue : result })
-    })
-    .catch(err => {
-       	this.setState({ venue : ['Information not available', err]})
-    	})
-	  }
+	    	this.setState({ venue : result })
+	    })
+	    .catch(err => {
+	       	this.setState({ venue : ['Information not available', err]})
+	    	})
+		  }
 	}
 
+	flickr = () => {
+		if(this.state.tab3Open){
+
+			let photoUrls = []
+
+			let query = this.props.item[0].name.split(' ').join('+') + '+Seattle'
+
+			console.log(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8a74466d6bf0048cd3fe7d87b9e49dc0&text=${query}&format=json&nojsoncallback=1`)
+
+			fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8a74466d6bf0048cd3fe7d87b9e49dc0&text=${query}&format=json&nojsoncallback=1`)
+			.then( res => { return res.json() })
+			.then( data => {
+
+				let photoData= [];
+
+				if(data.photos.photo.length >= 3){
+					let randomPhotos =[];
+
+					for(let i = 0; i < 3; i++ ){
+						let random = Math.floor(Math.random()*data.photos.photo.length)
+
+						randomPhotos.push(random)
+					}
+					for(let i = 0; i < randomPhotos.length; i++){
+						photoData.push(data.photos.photo[randomPhotos[i]])
+					}
+				}
+				else {
+					photoData = data.photos.photo
+
+				}
+					console.log(photoData)
+
+
+				for(let j = 0; j < photoData.length; j++){
+
+					let url = `https://farm${photoData[j].farm}.staticflickr.com/${photoData[j].server}/${photoData[j].id}_${photoData[j].secret}_q.jpg`
+
+					photoUrls.push(url)
+					console.log(url)
+
+				}
+
+				this.setState({ photos : photoUrls })
+				console.log(photoUrls)
+			})
+		}
+	}
+
+
 	componentWillReceiveProps(){
+		console.log('props rec')
 		this.setState({ venue : [] }, ()=> {
 			this.foursquare()
 		})
-	}
 
-	componentDidMount() {
+		this.setState({ photos : [] }, () => {
+			this.flickr()
+		})
+
+
 	}
 
 	tabClick = (e) => {
-	  this.foursquare()
 
 	  if(e.target.classList.contains('tabs')){
 
@@ -70,7 +123,9 @@ class InfoMenu extends React.Component {
 			})
 	    }
 	    else{
-	  		this.setState({ tab3Open : true })
+	  		this.setState({ tab3Open : true }, () => {
+	  			this.flickr()
+			})
 	    }
 	  }
 
@@ -89,7 +144,7 @@ class InfoMenu extends React.Component {
 				    <div className="tabs tab1 selected">
 				    🛈 </div>
 				    <div className="tabs tab2">🍽</div>
-				    <div className="tabs tab3">Tab 3</div>
+				    <div className="tabs tab3">📷</div>
 				  </div>
 
 
@@ -105,7 +160,13 @@ class InfoMenu extends React.Component {
 				  		<p key={index}>{line}</p>
 				  		)}
 				  </div>
-				  <div className="tab-content tab3">And also Tab 3's content is right here.</div>
+				  <div className="tab-content tab3">
+				  	<div id={'infomenu-photo-contain'}>
+					  	{this.state.photos.length > 0 && this.state.photos.map( (photo, index) =>
+					  		<img key={index} src={photo} alt={this.props.item.name} />
+					  	)}
+				  	</div>
+				  </div>
 				</div>
 
 			</div>
