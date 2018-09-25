@@ -79,10 +79,11 @@ class Sidebar extends React.Component {
   		<div>
 	  		<div className='sidebar'>
 	  		  <div id="sidebar-photo-contain">
-
+	  		  	{ this.state.photoUrl !== '' &&
 		  		  <a href={this.state.photoLink} target="_blank">
 		  		  	<img id="sidebar-photo" src={this.state.photoUrl} alt="Seattle from Unsplash.com" />
 		  		  </a>
+		  		}
 	  		  </div>
 
 
@@ -109,8 +110,8 @@ class Sidebar extends React.Component {
   			</ul>
   			<div id='sidebar-control'
   				onClick={this.toggleSidebar}>
-  				<span className='control-text hidden'>- EXPAND -</span>
-  				<span className='control-text'>- COLLAPSE -</span>
+  				<span className='control-text hidden'>- EXPAND LOCATIONS -</span>
+  				<span className='control-text'>- COLLAPSE lOCATIONS-</span>
   			</div>
 	  	  </div>
 	  	</div>

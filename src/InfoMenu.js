@@ -142,9 +142,14 @@ class InfoMenu extends React.Component {
 				  <div id="tab-contain"
 				  	onClick={this.tabClick}>
 				    <div className="tabs tab1 selected">
-				    🛈 </div>
-				    <div className="tabs tab2">🍽</div>
-				    <div className="tabs tab3">📷</div>
+				    	<span role="img" aria-label="information about location">🛈</span>
+				    </div>
+				    <div className="tabs tab2">
+				    	<span role="img" aria-label="recommended food near location">🍽</span>
+				    </div>
+				    <div className="tabs tab3">
+				    	<span role="img" aria-label="photos from location">📷</span>
+				    	</div>
 				  </div>
 
 
