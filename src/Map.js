@@ -24,6 +24,7 @@ class Map extends React.Component {
   }
 
   viewInfoMenu = (e) => {
+    console.log(e.mi)
 
     let lat = e.latLng.lat().toFixed(6)
     let lng = e.latLng.lng().toFixed(6)
@@ -34,8 +35,26 @@ class Map extends React.Component {
       }
      }))
 
+    console.log(matched[0].id)
+    console.log(this.props.markers)
+    let animate = this.props.markers
+
+    for(let i = 0; i < animate.length; i++){
+      console.log(((matched[0].id)-1), i)
+      if(i === ((matched[0].id)-1)){
+        console.log(animate[i])
+        animate[i].animate = 4
+      }
+      else {
+        animate[i].animate = 0
+      }
+    }
+    console.log(animate)
+
     this.setState({ infoMenu : true,
-                   clickedItem : matched })
+                   clickedItem : matched,
+                   markers : animate })
+
   }
 
   closeInfoMenu = () => {
@@ -52,8 +71,8 @@ class Map extends React.Component {
   }
 
 
-
   render() {
+    console.log(this.state.clickedItem)
   	return (
   		<GoogleMap
   			defaultZoom={10}
@@ -65,14 +84,15 @@ class Map extends React.Component {
 
 
   			{this.state.markers.map((marker) =>
+
   				<Marker
             key={marker.id}
-            id={`m${marker.id}`}
             position={marker}
             icon={{ url : icon,
                scaledSize : {width: 30, height: 52}
                }}
             onClick={this.viewInfoMenu}
+            animation={marker.animate}
           >
           </Marker>
         )}
