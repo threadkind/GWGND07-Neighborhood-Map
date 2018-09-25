@@ -8,6 +8,7 @@ class InfoMenu extends React.Component {
 	state = {
 		venue : [],
 		photos : [],
+		bigImage : '',
 		item : this.props.item,
 		tab1Open : true,
 		tab2Open : false,
@@ -41,8 +42,6 @@ class InfoMenu extends React.Component {
 			let photoUrls = []
 
 			let query = this.props.item[0].name.split(' ').join('+') + '+Seattle'
-
-			console.log(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8a74466d6bf0048cd3fe7d87b9e49dc0&text=${query}&format=json&nojsoncallback=1`)
 
 			fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8a74466d6bf0048cd3fe7d87b9e49dc0&text=${query}&format=json&nojsoncallback=1`)
 			.then( res => { return res.json() })
@@ -81,6 +80,18 @@ class InfoMenu extends React.Component {
 		}
 	}
 
+	openPhotoOverlay = (e) => {
+		document.querySelector('.photo-overlay').classList.remove('hidden')
+
+		let image = e.target.src.slice(0, -5) + 'c.jpg'
+
+		this.setState({ bigImage : image })
+
+	}
+
+	closePhotoOverlay =() => {
+		document.querySelector('.photo-overlay').classList.add('hidden')
+	}
 
 	componentWillReceiveProps(){
 		this.setState({ venue : [] }, ()=> {
@@ -184,10 +195,18 @@ class InfoMenu extends React.Component {
 				  <div className="tab-content tab3">
 				  	<div id={'infomenu-photo-contain'}>
 					  	{this.state.photos.length > 0 && this.state.photos.map( (photo, index) =>
-					  		<img key={index} src={photo} alt={this.props.item.name} />
+					  		<img key={index} src={photo} alt={this.props.item.name} onClick={this.openPhotoOverlay}/>
+
 					  	)}
 				  	</div>
 				  </div>
+				</div>
+
+				<div className="photo-overlay hidden" onClick={ this.closePhotoOverlay }>
+					<div className="photo-overlay-image-contain" onClick={ this.closePhotoOverlay } >
+						<div className="photo-overlay-close" onClick={ this.closePhotoOverlay } >X</div>
+						<img className="big-photo" src={this.state.bigImage} onClick={ this.closePhotoOverlay } />
+					</div>
 				</div>
 
 			</div>

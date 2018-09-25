@@ -80,7 +80,7 @@ class Sidebar extends React.Component {
 	  		<div className='sidebar'>
 	  		  <div id="sidebar-photo-contain">
 	  		  	{ this.state.photoUrl !== '' &&
-		  		  <a href={this.state.photoLink} target="_blank">
+		  		  <a style={{display: "table-cell"}} href={this.state.photoLink} target="_blank">
 		  		  	<img id="sidebar-photo" src={this.state.photoUrl} alt="Seattle from Unsplash.com" />
 		  		  </a>
 		  		}
