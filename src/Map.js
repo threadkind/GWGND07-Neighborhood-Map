@@ -30,16 +30,13 @@ class Map extends React.Component {
     let lng = e.latLng.lng().toFixed(6)
 
     let matched = (this.props.markers.filter(marker => {
-      if(marker.lat.toFixed(6) === lat && marker.lng.toFixed(6) === lng){
-        return marker
-      }
+      return marker.lat.toFixed(6) === lat && marker.lng.toFixed(6) === lng
      }))
 
     let animate = this.state.markers
-
+    console.log(matched)
 
     for(let i = 0; i < animate.length; i++){
-      console.log(matched[0].name, animate[i].name)
       if(animate[i].name === matched[0].name){
         console.log(animate[i])
         animate[i].animate = 4

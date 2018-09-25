@@ -210,7 +210,7 @@ class InfoMenu extends React.Component {
 				<div className="photo-overlay hidden" onClick={ this.closePhotoOverlay }>
 					<div className="photo-overlay-image-contain" onClick={ this.closePhotoOverlay } >
 						<div className="photo-overlay-close" onClick={ this.closePhotoOverlay } >X</div>
-						<img className="big-photo" src={this.state.bigImage} onClick={ this.closePhotoOverlay } />
+						<img className="big-photo" src={this.state.bigImage} alt="large version in overlay" onClick={ this.closePhotoOverlay } />
 					</div>
 				</div>
 
