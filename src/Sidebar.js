@@ -118,7 +118,7 @@ class Sidebar extends React.Component {
   			<div id='sidebar-control'
   				onClick={this.toggleSidebar}>
   				<span className='control-text hidden'>- EXPAND LOCATIONS -</span>
-  				<span className='control-text'>- COLLAPSE lOCATIONS-</span>
+  				<span className='control-text'>- COLLAPSE LOCATIONS-</span>
   			</div>
 	  	  </div>
 	  	</div>
