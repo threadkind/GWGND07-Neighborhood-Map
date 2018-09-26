@@ -170,7 +170,9 @@ class InfoMenu extends React.Component {
 
 	render(){
 		return(
-			<div>
+			<div role="menu"
+				    	aria-label="info menu"
+>
 				<div id="info-menu-close"
 					onClick={this.closeMenu}
 				>X</div>
@@ -207,14 +209,17 @@ class InfoMenu extends React.Component {
 				  </div>
 
 				  <div className="tab-content tab1 selected"
-				  		role="information"
-				    	aria-label="basic information about location"
+				  		role="contentinfo"
+				    	aria-label="information about location"
 				  >
-  				    	<h1>{this.props.item.map(item => { return item.name })[0]}</h1>
+  				    	<h2>{this.props.item.map(item => { return item.name })[0]}</h2>
   				    	<p>Latitude: {this.props.item.map(item => { return item.lat })[0]}, Longitude: {this.props.item.map(item => { return item.lng })[0]}</p>
 				  </div>
 
-				  <div className="tab-content tab2">
+				  <div className="tab-content tab2"
+				  		role="contentinfo"
+				    	aria-label="food near location"
+				  	>
 				  	<p className="foursquare-error hidden">Information not available from FourSquare</p>
 				  	<p className="fs-recommended">Recommended food/drink in this area:</p><br />
 				  	<p>{this.state.venue.name}</p>
@@ -222,7 +227,10 @@ class InfoMenu extends React.Component {
 				  		<p key={index}>{line}</p>
 				  		)}
 				  </div>
-				  <div className="tab-content tab3">
+				  <div className="tab-content tab3"
+				  		role="contentinfo"
+				    	aria-label="photos from location"
+				  >
 				  	<div className="flickr-error hidden">Unable to load images from Flickr</div>
 				  	<div id={'infomenu-photo-contain'}>
 					  	{this.state.photos.length > 0 && this.state.photos.map( (photo, index) =>

@@ -82,7 +82,7 @@ class Sidebar extends React.Component {
 
   render() {
   	return(
-  		<div>
+  		<aside>
 	  		<div className='sidebar'>
 	  		  <div className="unsplash-error hidden">Unable to load image from Unsplash</div>
 	  		  <div id="sidebar-photo-contain">
@@ -129,7 +129,7 @@ class Sidebar extends React.Component {
   				<span className='control-text'>- COLLAPSE LOCATIONS-</span>
   			</div>
 	  	  </div>
-	  	</div>
+	  	</aside>
   	)
   }
 }

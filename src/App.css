@@ -28,18 +28,35 @@ html, body, main-content {
   margin: 0;
   background: black;
 }
-#title {
+#skip-link {
   position: absolute;
-  height: auto;
   top: 0;
-  width: 100%;
+  left: 0;
+  color: var(--text);
+  z-index: 20;
+  font-family: var(--accent-font)
+}
+
+#title-contain {
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+#title {
+  width: auto;
+  height: 28px;
   text-align: center;
   font-size: 20px;
   font-family: var(--main-font);
   color: var(--text);
   background: var(--main);
-  padding: 10px 0;
+  padding: 10px 15px;
   box-shadow: 2px 2px 10px var(--shadow);
+  border-radius: 10px;
 }
 #menu-button {
   width: 60px;

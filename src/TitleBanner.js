@@ -4,10 +4,11 @@ class TitleBanner extends React.Component {
 
 	render() {
 		return(
-
-	    <div id="title"
-	        >Seattle Neighborhood Map
-	    </div>
+		<header id="title-contain">
+		    <h1 id="title"
+		        >Seattle Neighborhood Map
+		    </h1>
+	    </header>
 		)
 	}
 
