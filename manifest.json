@@ -1,0 +1,15 @@
+{
+  "short_name": "Neighborhood",
+  "name": "Neighborhood Map App",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "512x512 192x192 64x64 32x32 24x24 16x16",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#17ba83",
+  "background_color": "#294f59"
+}
