@@ -2,9 +2,9 @@
   "name": "map",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://portfolio.threadkind.com/GWGND07-Neighborhood-Map",
   "dependencies": {
     "gh-pages": "^2.0.0",
-    "homepage": "https://portfolio.threadkind.com/GWGND07-Neighborhood-Map",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-google-maps": "^9.4.5",
