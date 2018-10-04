@@ -82,8 +82,9 @@ html, body, main-content {
   font-family: var(--accent-font);
   width: 25vw;
   height: auto;
-  max-height: 90vh;
+  max-height: 80vh;
   position: absolute;
+  font-size: 2.05vh;
   top: 60px;
   left: 10px;
   background: var(--main);
@@ -199,11 +200,15 @@ html, body, main-content {
   cursor: pointer;
 }
 
-.tab-content h1, .tab-content p {
+.tab-content h2, .tab-content p {
   color: var(--accent-text);
   text-align: center;
   padding: 0;
   margin: 0;
+}
+
+#recommended-name {
+  font-size: 1.5em;
 }
 
 #infomenu-photo-contain {

@@ -22,7 +22,6 @@ class Map extends React.Component {
   }
 
   viewInfoMenu = (e) => {
-    console.log(e.mi)
 
     let lat = e.latLng.lat().toFixed(6)
     let lng = e.latLng.lng().toFixed(6)
@@ -42,7 +41,6 @@ class Map extends React.Component {
         animate[i].animate = 0
       }
     }
-    console.log(animate)
 
     this.setState({ infoMenu : true,
                    clickedItem : matched,

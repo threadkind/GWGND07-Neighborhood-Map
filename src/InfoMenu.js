@@ -221,8 +221,8 @@ class InfoMenu extends React.Component {
 				    	aria-label="food near location"
 				  	>
 				  	<p className="foursquare-error hidden">Information not available from FourSquare</p>
-				  	<p className="fs-recommended">Recommended food/drink in this area:</p><br />
-				  	<p>{this.state.venue.name}</p>
+				  	<p className="fs-recommended">Recommended food/drink in this area:</p>
+				  	<p id="recommended-name">{this.state.venue.name}</p>
 				  	{this.state.venue.location && this.state.venue.location.formattedAddress.map( (line, index) =>
 				  		<p key={index}>{line}</p>
 				  		)}
