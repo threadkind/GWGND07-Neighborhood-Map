@@ -74,8 +74,7 @@ class Map extends React.Component {
         defaultOptions={{ styles: mapStyles }}
         mapOptions={{
           fullscreenControl: false,
-            zoomControl: false,
-
+          zoomControl: false
         }}
 
         >

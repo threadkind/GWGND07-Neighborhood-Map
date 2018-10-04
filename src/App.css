@@ -38,10 +38,11 @@ html, body, main-content {
 }
 
 #title-contain {
-  width: auto;
+  width: 400px;
   height: auto;
   position: absolute;
   top: 0;
+  left: calc(50% - 200px);
   display: flex;
   justify-content: center;
   margin: 0 auto;
