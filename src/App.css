@@ -21,6 +21,8 @@
 }
 #root {
   height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 html, body, main-content {
   height: 100%;
@@ -93,6 +95,7 @@ html, body, main-content {
   padding: 2%;
   box-shadow: 2px 2px 10px var(--shadow);
   border-radius: 10px;
+  overflow-x: scroll;
 }
 
 .unsplash-error {
@@ -209,7 +212,7 @@ html, body, main-content {
 }
 
 #recommended-name {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 #infomenu-photo-contain {
@@ -280,13 +283,22 @@ html, body, main-content {
   display: none;
 }
 
+@media screen and (max-width: 350px) {
+  .tab-content h2 {
+    font-size: 4.5vw;
+  }
+  .tab-content p {
+    font-size: 4vw;
+  }
+}
+
 @media screen and (max-width: 500px) {
   #title-contain {
     top: 30px;
   }
   .sidebar {
     top: 100px;
-    overflow-x: scroll;
+    overflow-y: scroll;
   }
   #info-menu {
     width: 100%;
