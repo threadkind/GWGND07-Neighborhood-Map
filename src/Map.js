@@ -20,7 +20,7 @@ class Map extends React.Component {
     clickedItem : []
   }
 
-  viewInfoMenu = (e) => {
+  clickedMarker = (e) => {
 
     let lat = e.latLng.lat().toFixed(6)
     let lng = e.latLng.lng().toFixed(6)
@@ -29,10 +29,14 @@ class Map extends React.Component {
       return marker.lat.toFixed(6) === lat && marker.lng.toFixed(6) === lng
      }))
 
+    this.viewInfoMenu(matched)
+
+  }
+  viewInfoMenu = (item) => {
     let animate = this.state.markers
 
     for(let i = 0; i < animate.length; i++){
-      if(animate[i].name === matched[0].name){
+      if(animate[i].name === item[0].name){
         animate[i].animate = 4
       }
       else {
@@ -40,10 +44,9 @@ class Map extends React.Component {
       }
     }
 
-    this.setState({ infoMenu : true,
-                   clickedItem : matched,
-                   markers : animate })
-
+    this.setState({ infoMenu: true,
+                  clickedItem : item,
+                  markers : animate })
   }
 
   closeInfoMenu = () => {
@@ -53,24 +56,6 @@ class Map extends React.Component {
   markerClick = (filteredMarkers) => {
     this.setState({ markers : filteredMarkers })
   }
-
-  listItemClick = (listItem) => {
-    let animate = this.state.markers
-
-    for(let i = 0; i < animate.length; i++){
-      if(animate[i].name === listItem[0].name){
-        animate[i].animate = 4
-      }
-      else {
-        animate[i].animate = 0
-      }
-    }
-
-    this.setState({ infoMenu: true,
-                  clickedItem : listItem,
-                  markers : animate })
-  }
-
 
   render() {
   	return (
@@ -90,7 +75,7 @@ class Map extends React.Component {
             icon={{ url : icon,
                scaledSize : {width: 30, height: 52}
                }}
-            onClick={this.viewInfoMenu}
+            onClick={this.clickedMarker}
             animation={marker.animate}
           >
           </Marker>
@@ -99,7 +84,7 @@ class Map extends React.Component {
         <Sidebar
           markers={this.props.markers}
           markerClick={this.markerClick.bind(this)}
-          listItemClick={this.listItemClick.bind(this)}
+          listItemClick={this.viewInfoMenu.bind(this)}
         />
 
           {this.state.infoMenu && <InfoMenu
