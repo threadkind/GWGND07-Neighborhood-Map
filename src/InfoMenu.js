@@ -56,10 +56,10 @@ class InfoMenu extends React.Component {
 
 			let query = this.props.item[0].name.split(' ').join('+') + '+Seattle'
 
-			fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8a74466d6bf0048cd3fe7d87b9e49dc0&text=${query}&format=json&nojsoncallback=1`)
+			fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8d81df9693b4d5d9b014f53ef182a2e1&text=${query}&format=json&nojsoncallback=1`)
 			.then( res => { return res.json() })
 			.then( data => {
-
+				console.log(data)
 				let photoData= [];
 
 				if(data.photos.photo.length >= 3){
