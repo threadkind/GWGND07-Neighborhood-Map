@@ -79,6 +79,9 @@ The app also includes a manifest to configure a custom splash screen if app is l
 ## Dependancies
 This app is written primarily in React with HTML, CSS, Javascript(JSX).
 
+Dependancies can be found in the package.json file. I used react-google-maps package to assist with displaying the map on the page.
+I also used gh-pages package to assist with deploying the app to github pages.
+
 The social media icons found in the project were from the following links:
 * [Foursquare Icon](http://icons-for-free.com/icon/four_square_foursquare_icon_386632.html)
 * [Flickr Icon](http://iconbug.com/detail/icon/653/flickr/)
