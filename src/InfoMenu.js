@@ -48,7 +48,7 @@ class InfoMenu extends React.Component {
 
   flickr = () => {
 	if(this.state.tab3Open){
-  	  if(document.querySelector('.flickr-error').classList.contains('hidden')){
+  	  if(document.querySelector('.flickr-error').classList.contains('hidden') === false){
 		document.querySelector('.flickr-error').classList.add('hidden')
 	  }
 
@@ -113,6 +113,7 @@ class InfoMenu extends React.Component {
 	this.setState({ photos : [] }, () => {
 	  this.flickr()
 	})
+
   }
 
   tabClick = (e) => {
