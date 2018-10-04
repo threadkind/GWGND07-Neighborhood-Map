@@ -4,8 +4,8 @@ import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
 import InfoMenu from './InfoMenu'
 
-const mapStyles = require("./map-styles.json");
-const icon = require("./marker.svg");
+const mapStyles = require("./json/map-styles.json");
+const icon = require("./imgs/marker.svg");
 
 class Map extends React.Component {
 

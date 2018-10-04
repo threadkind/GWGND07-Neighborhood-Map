@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './Map'
 
-const locations = require("./locations.json");
+const locations = require("./json/locations.json");
 
 class App extends Component {
   render() {
