@@ -84,6 +84,15 @@ class Sidebar extends React.Component {
   	return(
   		<aside>
 	  		<div className='sidebar'>
+		  		<div id='sidebar-control'
+	  				tabIndex={0}
+					role="button"
+					aria-label='sidebar control'
+	  				onClick={this.toggleSidebar}>
+	  				<span className='control-text hidden'>EXPAND LOCATIONS</span>
+	  				<span className='control-text'>COLLAPSE LOCATIONS</span>
+	  			</div>
+	  			<br />
 	  		  <div className="unsplash-error hidden">Unable to load image from Unsplash</div>
 	  		  <div id="sidebar-photo-contain">
 	  		  	{ this.state.photoUrl !== '' &&
@@ -120,14 +129,6 @@ class Sidebar extends React.Component {
 	      		)}
 
   			</ul>
-  			<div id='sidebar-control'
-  				tabIndex={0}
-				role="button"
-				aria-label='sidebar control'
-  				onClick={this.toggleSidebar}>
-  				<span className='control-text hidden'>- EXPAND LOCATIONS -</span>
-  				<span className='control-text'>- COLLAPSE LOCATIONS-</span>
-  			</div>
 	  	  </div>
 	  	</aside>
   	)

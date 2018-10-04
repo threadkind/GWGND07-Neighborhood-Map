@@ -223,7 +223,7 @@ class InfoMenu extends React.Component {
 				  	<p className="foursquare-error hidden">Information not available from FourSquare</p>
 				  	<p className="fs-recommended">Recommended food/drink in this area:</p>
 				  	<p id="recommended-name">{this.state.venue.name}</p>
-				  	{this.state.venue.location && this.state.venue.location.formattedAddress.map( (line, index) =>
+				  	{this.state.venue.location && this.state.venue.location.formattedAddress.slice(0, -1).map( (line, index) =>
 				  		<p key={index}>{line}</p>
 				  		)}
 				  </div>

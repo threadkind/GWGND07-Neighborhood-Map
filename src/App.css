@@ -80,6 +80,7 @@ html, body, main-content {
 }
 .sidebar {
   font-family: var(--accent-font);
+  min-width: 150px;
   width: 25vw;
   height: auto;
   max-height: 80vh;
@@ -123,7 +124,7 @@ html, body, main-content {
 }
 #sidebar-control {
   background: var(--accent);
-  height: 25px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -277,4 +278,19 @@ html, body, main-content {
 
 .hidden {
   display: none;
+}
+
+@media screen and (max-width: 500px) {
+  #title-contain {
+    top: 30px;
+  }
+  .sidebar {
+    top: 100px;
+    overflow-x: scroll;
+  }
+  #info-menu {
+    width: 100%;
+    left: 0;
+  }
+
 }
