@@ -1,8 +1,5 @@
 import React from 'react';
 
-
-
-
 class Sidebar extends React.Component {
 
 	state = {
@@ -37,14 +34,13 @@ class Sidebar extends React.Component {
 
 			setTimeout(toggleHideElements, 300)
 		}
-
-		console.log(e.target.classList)
-			}
+	}
 
 	handleSidebarClick = (e) => {
 		let clickedListItem = this.props.markers.filter( place => { return place.id === Number(e.target.id)} )
 		this.setState({ selectedListItem : clickedListItem })
 		this.props.listItemClick(clickedListItem)
+		console.log(clickedListItem)
 	}
 
 	filterLocations = (e) => {

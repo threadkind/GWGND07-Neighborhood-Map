@@ -1,5 +1,5 @@
 import React from 'react'
-import { withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
 import InfoMenu from './InfoMenu'
@@ -33,7 +33,6 @@ class Map extends React.Component {
 
     for(let i = 0; i < animate.length; i++){
       if(animate[i].name === matched[0].name){
-        console.log(animate[i])
         animate[i].animate = 4
       }
       else {
@@ -56,8 +55,20 @@ class Map extends React.Component {
   }
 
   listItemClick = (listItem) => {
+    let animate = this.state.markers
+
+    for(let i = 0; i < animate.length; i++){
+      if(animate[i].name === listItem[0].name){
+        animate[i].animate = 4
+      }
+      else {
+        animate[i].animate = 0
+      }
+    }
+
     this.setState({ infoMenu: true,
-                  clickedItem : listItem})
+                  clickedItem : listItem,
+                  markers : animate })
   }
 
 
@@ -72,9 +83,7 @@ class Map extends React.Component {
 
         <TitleBanner />
 
-
   			{this.state.markers.map((marker) =>
-
   				<Marker
             key={marker.id}
             position={marker}
@@ -86,18 +95,12 @@ class Map extends React.Component {
           >
           </Marker>
         )}
-          {this.state.infoWindowOpen && <InfoWindow
-              onCloseClick={this.toggleWindow}
-              position={{lat: this.state.markerLat, lng: this.state.markerLng}}
-              >
-              <div>Coordinates of this location are {this.state.markerLat}, {this.state.markerLng}</div>
-          </InfoWindow>}
 
-          <Sidebar
-            markers={this.props.markers}
-            markerClick={this.markerClick.bind(this)}
-            listItemClick={this.listItemClick.bind(this)}
-          />
+        <Sidebar
+          markers={this.props.markers}
+          markerClick={this.markerClick.bind(this)}
+          listItemClick={this.listItemClick.bind(this)}
+        />
 
           {this.state.infoMenu && <InfoMenu
             closeMenu={this.closeInfoMenu}

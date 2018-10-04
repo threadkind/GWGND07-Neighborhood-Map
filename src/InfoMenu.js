@@ -115,8 +115,6 @@ class InfoMenu extends React.Component {
 		this.setState({ photos : [] }, () => {
 			this.flickr()
 		})
-
-
 	}
 
 	tabClick = (e) => {
