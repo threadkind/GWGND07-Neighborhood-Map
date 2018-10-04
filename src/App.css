@@ -100,7 +100,6 @@ html, body, main-content {
   padding: 2%;
   box-shadow: 2px 2px 10px var(--shadow);
   border-radius: 10px;
-  overflow-x: scroll;
 }
 
 .unsplash-error {

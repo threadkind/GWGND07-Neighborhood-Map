@@ -482,6 +482,8 @@ The project was coded from scratch using React and was bootstrapped with [Create
 
 
 ## Getting Started
+View the app online - [ Neighborhood Map App](http://portfolio.threadkind.com/GWGND07-Neighborhood-Map/).
+
 To view the app locally you can clone the repository to your computer.
 [The link to the repository can be found here.](https://github.com/threadkind/GWGND07-Neighborhood-Map)
 
@@ -517,11 +519,14 @@ These markers will 'drop in' when the map is loaded.
 ### Sidebar Menu
 The sidebar will show as default when the app is loaded.
 
-The top of the sidebar shows an image pulled through from [Unsplash.com](https://unsplash.com/), if available. Otherwise it will show an error message to advise it is not available.
+There is a link on the top of the sidebar menu to allow it to be collapsed to move it out of the way. When it is collapsed this link changes to say 'expand locations', to allow the menu to be expanded again if necessary.
+
+Under the sidebar control an image is pulled through from [Unsplash.com](https://unsplash.com/), if available. Otherwise it will show an error message to advise it is not available.
 
 All available locations will be shown on the sidebar menu. There is a dropdown to allow the markers to be filtered by category. When a category is selected, the list will filter along with the markers shown on the map.
 
-There is a link on the bottom of the sidebar menu to allow it to be collapsed to move it out of the way. When it is collapsed this link changes to say expand, to allow the menu to be expanded again if necessary.
+The locations will be scrollable if they are unable to fit on the screen.
+
 
 ### Info Menu
 The info menu will appear if a locations is clicked, either by clicking a link in the sidebar menu or clicking a marker on the map.
@@ -536,6 +541,13 @@ If the request is not successful, then the tab will show an error message to adv
 If one of the Flickr thumbnail images is clicked, it will display and overlay over the app with a larger version of the image. The image does have an 'x' to close the overlay, but clicking anywhere on the overlay will close it, to make sure the user does not get stuck in the overlay and can easily get back to the app.
 
 The info menu features an 'x' in the top right corner to allow the info menu to be closed and moved out of the way.
+
+
+## Responsive Views
+The app can be used across all screen sizes and the view will change slightly to best fit the components on the screen depending on which size screen they are being viewed. The majority of the CSS is written in a responsive manner, with a few small changes written into media queries for smaller screen sizes.
+
+## Offline First
+The app registers a service worker is the browser is compatible.
 
 
 ## Dependancies
