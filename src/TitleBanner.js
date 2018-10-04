@@ -1,8 +1,7 @@
 import React from 'react'
 
-class TitleBanner extends React.Component {
+const TitleBanner = () => {
 
-	render() {
 		return(
 		<header id="title-contain">
 		    <h1 id="title"
@@ -10,7 +9,6 @@ class TitleBanner extends React.Component {
 		    </h1>
 	    </header>
 		)
-	}
 
 }
 
