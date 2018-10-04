@@ -59,7 +59,6 @@ class InfoMenu extends React.Component {
 			fetch(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8d81df9693b4d5d9b014f53ef182a2e1&text=${query}&format=json&nojsoncallback=1`)
 			.then( res => { return res.json() })
 			.then( data => {
-				console.log(data)
 				let photoData= [];
 
 				if(data.photos.photo.length >= 3){

@@ -40,7 +40,6 @@ class Sidebar extends React.Component {
 		let clickedListItem = this.props.markers.filter( place => { return place.id === Number(e.target.id)} )
 		this.setState({ selectedListItem : clickedListItem })
 		this.props.listItemClick(clickedListItem)
-		console.log(clickedListItem)
 	}
 
 	filterLocations = (e) => {
