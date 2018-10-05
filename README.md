@@ -33,6 +33,12 @@ After dependancies have installed, you can start the server with `npm start`
 
 When the server is running, it should open up the app for you in the browser, or you can follow the instructions on the command line.
 
+Service worker only registers in production build - see Progressive Web App section below.
+
+To run a production build, make sure you are in the main app folder and type `npm start` into the command line.
+Once it is built, type `serve -s build` into the command line to start the server.
+Typically this will set up on `http://localhost:5000/` - navigate to this page in your browser.
+
 
 ## Features of the App
 

@@ -3,6 +3,7 @@ import { withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 import TitleBanner from './TitleBanner'
 import Sidebar from './Sidebar'
 import InfoMenu from './InfoMenu'
+import ErrorBoundary from './ErrorBoundary'
 
 const mapStyles = require("./json/map-styles.json");
 const icon = require("./imgs/marker.svg");
@@ -19,6 +20,11 @@ class Map extends React.Component {
     infoMenu : false,
     clickedItem : []
   }
+
+  gm_authFailure(){
+    window.alert("Error with Google Maps")
+  }
+
 
   clickedMarker = (e) => {
 
@@ -57,9 +63,14 @@ class Map extends React.Component {
     this.setState({ markers : filteredMarkers })
   }
 
+  componentDidMount(){
+    window.gm_authFailure = this.gm_authFailure;
+  }
+
+
   render() {
   	return (
-
+    <ErrorBoundary>
   		<GoogleMap
   			defaultZoom={10}
   			defaultCenter={{lat: 47.622451, lng: -122.352033}}
@@ -93,6 +104,7 @@ class Map extends React.Component {
           />}
 
   		</GoogleMap>
+      </ErrorBoundary>
   	)
   }
 }
